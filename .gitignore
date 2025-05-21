@@ -5,6 +5,7 @@ client/.env
 
 # Python
 server/env/
+server/blog/media/
 *.pyc
 __pycache__/
 *.sqlite3
