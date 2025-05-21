@@ -24,14 +24,5 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='posts', to=settings.AUTH_USER_MODEL)),
             ],
-        ),
-        migrations.CreateModel(
-            name='Profile',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('phone_number', models.CharField(blank=True, max_length=15, null=True)),
-                ('image', models.ImageField(blank=True, null=True, upload_to='profile_images/')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='profile', to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
+        )
     ]

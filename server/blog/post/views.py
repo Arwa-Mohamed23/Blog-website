@@ -2,8 +2,8 @@ from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
-from .models import Profile, Post
-from .serializers import UserSerializer, ProfileSerializer, PostSerializer
+from .models import Post
+from .serializers import UserSerializer, PostSerializer
 from .permissions import IsOwnerOrReadOnly
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
@@ -19,11 +19,6 @@ class RegisterView(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        
-        # Create an empty profile for the user
-        Profile.objects.create(user=user)
-        
-        # Create a token for the user
         token, created = Token.objects.get_or_create(user=user)
         
         return Response({
@@ -51,14 +46,6 @@ class UserDetailView(generics.RetrieveUpdateAPIView):
     
     def get_object(self):
         return self.request.user
-
-class ProfileDetailView(generics.RetrieveUpdateAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    
-    def get_object(self):
-        return self.request.user.profile
 
 class PostListCreateAPIView(generics.ListCreateAPIView):
     queryset = Post.objects.all()

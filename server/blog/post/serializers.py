@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Profile, Post
+from .models import Post
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -21,13 +21,6 @@ class UserSerializer(serializers.ModelSerializer):
             last_name=validated_data.get('last_name', '')
         )
         return user
-
-class ProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-    
-    class Meta:
-        model = Profile
-        fields = ['id', 'user', 'phone_number', 'image']
 
 class PostSerializer(serializers.ModelSerializer):
     author_username = serializers.ReadOnlyField(source='author.username')
