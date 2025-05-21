@@ -1,8 +1,14 @@
-# Client
+# Node.js
 client/node_modules/
 client/dist/
+client/.env
 
-# Server
+# Python
 server/env/
-server/blog/db.sqlite3
-server/__pycache__/
+*.pyc
+__pycache__/
+*.sqlite3
+
+# OS files
+.DS_Store
+Thumbs.db
