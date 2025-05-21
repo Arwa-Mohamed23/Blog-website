@@ -1,0 +1,8 @@
+# Client
+client/node_modules/
+client/dist/
+
+# Server
+server/env/
+server/blog/db.sqlite3
+server/__pycache__/
