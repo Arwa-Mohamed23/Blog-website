@@ -66,7 +66,7 @@ function App() {
       <Navbar user={user} onLogout={handleLogout} />
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home user={user} />} />
           <Route
             path="/login"
             element={<Login onLogin={handleLogin} user={user} />}
